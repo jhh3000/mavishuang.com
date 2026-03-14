@@ -1,5 +1,5 @@
 // Project metadata — maps project ID to detail screenshot
-const projects = {
+var projects = {
   'bar-rescue': 'screenshots/01-bar-rescue.png',
   'variety-magazine': 'screenshots/02-variety-magazine.png',
   'bellator-mma': 'screenshots/03-bellator-mma.png',
@@ -23,14 +23,17 @@ const projects = {
   'baby-shower': 'screenshots/21-baby-shower.png'
 };
 
+// Ordered list of project IDs (left-to-right, top-to-bottom)
+var projectOrder = Object.keys(projects);
+
 // DOM elements
-const navWork = document.getElementById('nav-work');
-const navResume = document.getElementById('nav-resume');
-const pageWork = document.getElementById('page-work');
-const pageResume = document.getElementById('page-resume');
-const pageDetail = document.getElementById('page-detail');
-const detailImage = document.getElementById('detail-image');
-const mainEl = document.getElementById('main');
+var navWork = document.getElementById('nav-work');
+var navResume = document.getElementById('nav-resume');
+var pageWork = document.getElementById('page-work');
+var pageResume = document.getElementById('page-resume');
+var pageDetail = document.getElementById('page-detail');
+var detailImage = document.getElementById('detail-image');
+var mainEl = document.getElementById('main');
 
 // Route to the correct page based on the URL hash
 function navigate(hash) {
@@ -48,6 +51,8 @@ function navigate(hash) {
     var projectId = hash.replace('#project/', '');
     var detailSrc = projects[projectId];
     if (detailSrc) {
+      // Hide old image immediately to prevent flash of stale content
+      detailImage.style.opacity = '0';
       detailImage.src = detailSrc;
       detailImage.alt = projectId.replace(/-/g, ' ');
       pageDetail.classList.add('active');
@@ -69,6 +74,29 @@ function navigate(hash) {
   // Scroll to top
   mainEl.scrollTop = 0;
 }
+
+// Reveal image once loaded (prevents flash of old content)
+detailImage.addEventListener('load', function () {
+  detailImage.style.opacity = '1';
+});
+
+// Keyboard navigation on detail pages
+window.addEventListener('keydown', function (e) {
+  var hash = window.location.hash;
+  if (!hash.startsWith('#project/')) return;
+
+  var projectId = hash.replace('#project/', '');
+  var idx = projectOrder.indexOf(projectId);
+  if (idx === -1) return;
+
+  if (e.key === 'ArrowLeft' && idx > 0) {
+    e.preventDefault();
+    window.location.hash = '#project/' + projectOrder[idx - 1];
+  } else if (e.key === 'ArrowRight' && idx < projectOrder.length - 1) {
+    e.preventDefault();
+    window.location.hash = '#project/' + projectOrder[idx + 1];
+  }
+});
 
 // Listen for hash changes (back/forward buttons)
 window.addEventListener('hashchange', function () {
