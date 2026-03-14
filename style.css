@@ -175,10 +175,17 @@ body {
   display: block;
 }
 
+.grid-item-contain {
+  background: #0a0a0a;
+}
+
+.grid-item-contain img {
+  object-fit: contain;
+}
+
 /* ===== Resume Page ===== */
 .page-resume {
   padding: 40px;
-  display: flex;
   justify-content: center;
   background: var(--white);
 }
