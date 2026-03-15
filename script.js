@@ -35,8 +35,22 @@ var pageDetail = document.getElementById('page-detail');
 var detailImage = document.getElementById('detail-image');
 var mainEl = document.getElementById('main');
 
+// Save/restore scroll positions per page
+var scrollPositions = {};
+var activeHash = '';
+
+function pageKeyForHash(hash) {
+  if (hash.startsWith('#project/')) return 'detail';
+  if (hash === '#resume') return 'resume';
+  return 'work';
+}
+
 // Route to the correct page based on the URL hash
 function navigate(hash) {
+  // Save scroll position of the page we're leaving
+  scrollPositions[pageKeyForHash(activeHash)] = mainEl.scrollTop;
+  activeHash = hash;
+
   // Hide all pages
   pageWork.classList.remove('active');
   pageResume.classList.remove('active');
@@ -45,6 +59,9 @@ function navigate(hash) {
   // Update nav highlights
   navWork.classList.remove('active');
   navResume.classList.remove('active');
+
+  // Determine which page to show
+  var targetKey;
 
   if (hash.startsWith('#project/')) {
     // Project detail page
@@ -57,22 +74,32 @@ function navigate(hash) {
       detailImage.alt = projectId.replace(/-/g, ' ');
       pageDetail.classList.add('active');
       navWork.classList.add('active');
+      targetKey = 'detail';
     } else {
       // Unknown project, fall back to work
       pageWork.classList.add('active');
       navWork.classList.add('active');
+      targetKey = 'work';
     }
   } else if (hash === '#resume') {
     pageResume.classList.add('active');
     navResume.classList.add('active');
+    targetKey = 'resume';
   } else {
     // Default: #work or empty hash
     pageWork.classList.add('active');
     navWork.classList.add('active');
+    targetKey = 'work';
   }
 
-  // Scroll to top
-  mainEl.scrollTop = 0;
+  // Restore saved scroll position, or scroll to top for new detail pages
+  if (targetKey === 'detail') {
+    mainEl.scrollTop = 0;
+  } else if (scrollPositions[targetKey] !== undefined) {
+    mainEl.scrollTop = scrollPositions[targetKey];
+  } else {
+    mainEl.scrollTop = 0;
+  }
 }
 
 // Reveal image once loaded (prevents flash of old content)
