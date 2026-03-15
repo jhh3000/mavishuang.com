@@ -16,20 +16,30 @@
     <!-- Logo -->
     <div class="sidebar-logo">
       <a href="#work">
-        <svg viewBox="0 0 60 60" width="60" height="60" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="30" cy="30" r="30" fill="#002361"/>
-          <text x="30" y="26" text-anchor="middle" fill="white" font-family="'Nunito Sans', sans-serif" font-size="11" font-weight="700" letter-spacing="1">MAVIS</text>
-          <text x="30" y="39" text-anchor="middle" fill="white" font-family="'Nunito Sans', sans-serif" font-size="11" font-weight="700" letter-spacing="1">HU</text>
+        <svg viewBox="0 0 70 75" width="60" height="64" xmlns="http://www.w3.org/2000/svg">
+          <!-- Ears -->
+          <ellipse cx="14" cy="12" rx="10" ry="12" fill="#002361" transform="rotate(-15 14 12)"/>
+          <ellipse cx="56" cy="12" rx="10" ry="12" fill="#002361" transform="rotate(15 56 12)"/>
+          <!-- Head -->
+          <circle cx="35" cy="40" r="30" fill="#002361"/>
+          <!-- Snout -->
+          <ellipse cx="35" cy="48" rx="11" ry="8" fill="white"/>
+          <!-- Nostrils -->
+          <ellipse cx="31" cy="48" rx="2.5" ry="3" fill="#002361"/>
+          <ellipse cx="39" cy="48" rx="2.5" ry="3" fill="#002361"/>
         </svg>
       </a>
     </div>
 
     <!-- Navigation -->
     <nav class="sidebar-nav">
+      <div class="nav-arrows">
+        <button class="nav-arrow" id="nav-prev" aria-label="Previous">&#x2039;</button>
+        <button class="nav-arrow" id="nav-next" aria-label="Next">&#x203a;</button>
+      </div>
       <a href="#work" class="nav-link active" id="nav-work">
         <span>WORK</span>
       </a>
-      <div class="nav-divider"></div>
       <a href="#resume" class="nav-link" id="nav-resume">
         <span>RESUME</span>
       </a>

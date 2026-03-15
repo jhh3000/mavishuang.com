@@ -113,6 +113,8 @@ var projectOrder = Object.keys(projects);
 // DOM elements
 var navWork = document.getElementById('nav-work');
 var navResume = document.getElementById('nav-resume');
+var navPrev = document.getElementById('nav-prev');
+var navNext = document.getElementById('nav-next');
 var pageWork = document.getElementById('page-work');
 var pageResume = document.getElementById('page-resume');
 var pageDetail = document.getElementById('page-detail');
@@ -203,48 +205,80 @@ function navigate(hash) {
   }
 }
 
-// Keyboard navigation on detail and sub-pages
+// Navigation helpers
+function navigatePrev() {
+  var hash = window.location.hash;
+  if (!hash.startsWith('#project/')) return;
+  var idx = projectOrder.indexOf(hash.replace('#project/', ''));
+  if (idx === -1) return;
+  window.location.hash = idx === 0 ? '#work' : '#project/' + projectOrder[idx - 1];
+}
+
+function navigateNext() {
+  var hash = window.location.hash;
+  if (!hash || hash === '#work' || hash === '') {
+    window.location.hash = '#project/' + projectOrder[0];
+    return;
+  }
+  if (!hash.startsWith('#project/')) return;
+  var idx = projectOrder.indexOf(hash.replace('#project/', ''));
+  if (idx === -1) return;
+  window.location.hash = idx === projectOrder.length - 1 ? '#work' : '#project/' + projectOrder[idx + 1];
+}
+
+// Sidebar arrow buttons
+navPrev.addEventListener('click', navigatePrev);
+navNext.addEventListener('click', navigateNext);
+
+// Keyboard navigation
 window.addEventListener('keydown', function (e) {
   var hash = window.location.hash;
 
-  // Escape returns to the main work page from any sub-page
   if (e.key === 'Escape' && hash && hash !== '#work' && hash !== '') {
     e.preventDefault();
     window.location.hash = '#work';
     return;
   }
 
-  // On main work page, right arrow goes to first project
-  if (!hash || hash === '#work' || hash === '') {
-    if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      window.location.hash = '#project/' + projectOrder[0];
-    }
-    return;
-  }
-
-  if (!hash.startsWith('#project/')) return;
-
-  var projectId = hash.replace('#project/', '');
-  var idx = projectOrder.indexOf(projectId);
-  if (idx === -1) return;
-
   if (e.key === 'ArrowLeft') {
     e.preventDefault();
-    if (idx === 0) {
-      window.location.hash = '#work';
-    } else {
-      window.location.hash = '#project/' + projectOrder[idx - 1];
-    }
+    navigatePrev();
   } else if (e.key === 'ArrowRight') {
     e.preventDefault();
-    if (idx === projectOrder.length - 1) {
-      window.location.hash = '#work';
-    } else {
-      window.location.hash = '#project/' + projectOrder[idx + 1];
-    }
+    navigateNext();
   }
 });
+
+// Touch swipe navigation (mobile)
+var touchStartX = 0;
+var touchStartY = 0;
+var swiping = false;
+
+mainEl.addEventListener('touchstart', function (e) {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+  swiping = true;
+}, { passive: true });
+
+mainEl.addEventListener('touchend', function (e) {
+  if (!swiping) return;
+  swiping = false;
+
+  var hash = window.location.hash;
+  if (!hash.startsWith('#project/')) return;
+
+  var dx = e.changedTouches[0].clientX - touchStartX;
+  var dy = e.changedTouches[0].clientY - touchStartY;
+
+  // Only trigger if horizontal swipe is dominant and long enough
+  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+    if (dx > 0) {
+      navigatePrev();
+    } else {
+      navigateNext();
+    }
+  }
+}, { passive: true });
 
 // Listen for hash changes (back/forward buttons)
 window.addEventListener('hashchange', function () {
