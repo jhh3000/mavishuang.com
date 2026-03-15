@@ -1,107 +1,107 @@
-// Project metadata — maps project ID to image, title, and subtitle
+// Project metadata — maps project ID to images, title, and subtitle
 var projects = {
   'bar-rescue': {
-    image: 'project-images/bar-rescue.jpg',
+    images: ['project-images/bar-rescue-1.jpg', 'project-images/bar-rescue-2.jpg'],
     title: 'PARAMOUNT NETWORK BAR RESCUE',
     subtitle: 'Digital Ad Design'
   },
   'variety-magazine': {
-    image: 'project-images/variety-magazine.jpg',
+    images: ['project-images/variety-magazine-1.jpg', 'project-images/variety-magazine-2.jpg'],
     title: 'VARIETY MAGAZINE COVER',
     subtitle: 'Print Design'
   },
   'bellator-mma': {
-    image: 'project-images/bellator-mma.jpg',
+    images: ['project-images/bellator-mma.jpg'],
     title: 'PARAMOUNT NETWORK BELLATOR MMA BANNER',
     subtitle: 'Digital Ad Design'
   },
   'waco-cable': {
-    image: 'project-images/waco-cable.jpg',
+    images: ['project-images/waco-cable.jpg'],
     title: 'PARAMOUNT NETWORK WACO CABLE GUIDE BANNERS',
     subtitle: 'Digital Ad Design'
   },
   'album-cover': {
-    image: 'project-images/album-cover.jpg',
+    images: ['project-images/album-cover.jpg'],
     title: 'ALBUM COVER',
     subtitle: 'Print Design'
   },
   'paramount': {
-    image: 'project-images/paramount.jpg',
+    images: ['project-images/paramount-1.jpg', 'project-images/paramount-2.jpg'],
     title: 'PARAMOUNT NETWORK PRESENTATION',
     subtitle: 'PowerPoint Design'
   },
   'the-greatest': {
-    image: 'project-images/the-greatest.jpg',
+    images: ['project-images/the-greatest-1.jpg', 'project-images/the-greatest-2.jpg'],
     title: 'THE GREATEST',
     subtitle: 'Logo Design'
   },
   'disney-fairies': {
-    image: 'project-images/disney-fairies.jpg',
+    images: ['project-images/disney-fairies.jpg'],
     title: 'DISNEY FAIRIES SWIVEL HAIRBRUSH',
     subtitle: 'Product & Packaging Design'
   },
   'disney-sofia': {
-    image: 'project-images/disney-sofia.jpg',
+    images: ['project-images/disney-sofia-1.jpg', 'project-images/disney-sofia-2.jpg'],
     title: 'DISNEY SOFIA THE FIRST COSMETIC SET',
     subtitle: 'Product & Packaging Design'
   },
   'disney-princess': {
-    image: 'project-images/disney-princess.jpg',
+    images: ['project-images/disney-princess-1.jpg', 'project-images/disney-princess-2.jpg'],
     title: 'DISNEY PRINCESS BEAUTY PRODUCTS',
     subtitle: 'Product & Packaging Design'
   },
   'hello-kitty-cosmetic': {
-    image: 'project-images/hello-kitty-cosmetic.jpg',
+    images: ['project-images/hello-kitty-cosmetic.jpg'],
     title: 'SANRIO HELLO KITTY COSMETIC GIFT SET',
     subtitle: 'Product & Packaging Design'
   },
   'hello-kitty-salon': {
-    image: 'project-images/hello-kitty-salon.jpg',
+    images: ['project-images/hello-kitty-salon.jpg'],
     title: 'SANRIO HELLO KITTY BEAUTY SALON SET',
     subtitle: 'Product & Packaging Design'
   },
   'anna-hu-butterfly': {
-    image: 'project-images/anna-hu-butterfly.jpg',
+    images: ['project-images/anna-hu-butterfly-1.jpg', 'project-images/anna-hu-butterfly-2.jpg', 'project-images/anna-hu-butterfly-3.jpg'],
     title: 'ANNA HU HAUTE JOAILLERIE BUTTERFLY',
     subtitle: 'Social Media Ad Design'
   },
   'anna-hu-morocco-1': {
-    image: 'project-images/anna-hu-morocco-1.jpg',
+    images: ['project-images/anna-hu-morocco-1.jpg'],
     title: 'ANNA HU HAUTE JOAILLERIE MOROCCO',
     subtitle: 'Social Media Ad Design'
   },
   'anna-hu-morocco-2': {
-    image: 'project-images/anna-hu-morocco-2.jpg',
+    images: ['project-images/anna-hu-morocco-2.jpg'],
     title: 'ANNA HU HAUTE JOAILLERIE MOROCCO',
     subtitle: 'Social Media Ad Design'
   },
   'portcullis': {
-    image: 'project-images/portcullis.jpg',
+    images: ['project-images/portcullis.jpg'],
     title: 'PORTCULLIS',
     subtitle: 'Brand Design'
   },
   'smile-connection': {
-    image: 'project-images/smile-connection.jpg',
+    images: ['project-images/smile-connection-1.jpg', 'project-images/smile-connection-2.jpg', 'project-images/smile-connection-3.jpg'],
     title: 'SMILE CONNECTION',
     subtitle: 'Brand Design'
   },
   'embrace-myself': {
-    image: 'project-images/embrace-myself.jpg',
+    images: ['project-images/embrace-myself-1.jpg', 'project-images/embrace-myself-2.jpg', 'project-images/embrace-myself-3.jpg', 'project-images/embrace-myself-4.jpg', 'project-images/embrace-myself-5.jpg', 'project-images/embrace-myself-6.jpg', 'project-images/embrace-myself-7.jpg'],
     title: 'EMBRACE MYSELF',
     subtitle: 'Brand Design'
   },
   'wedding-favors': {
-    image: 'project-images/wedding-favors.jpg',
+    images: ['project-images/wedding-favors-1.jpg', 'project-images/wedding-favors-2.jpg', 'project-images/wedding-favors-3.jpg', 'project-images/wedding-favors-4.jpg'],
     title: 'WEDDING FAVORS',
     subtitle: 'Print Design'
   },
   'wedding-invitation': {
-    image: 'project-images/wedding-invitation.jpg',
+    images: ['project-images/wedding-invitation.jpg'],
     title: 'WEDDING INVITATION',
     subtitle: 'Print Design'
   },
   'baby-shower': {
-    image: 'project-images/baby-shower.jpg',
+    images: ['project-images/baby-shower.jpg'],
     title: 'BABY SHOWER INVITATION',
     subtitle: 'Print Design'
   }
@@ -116,9 +116,9 @@ var navResume = document.getElementById('nav-resume');
 var pageWork = document.getElementById('page-work');
 var pageResume = document.getElementById('page-resume');
 var pageDetail = document.getElementById('page-detail');
-var detailImage = document.getElementById('detail-image');
 var detailTitle = document.getElementById('detail-title');
 var detailSubtitle = document.getElementById('detail-subtitle');
+var detailContent = document.getElementById('detail-content');
 var mainEl = document.getElementById('main');
 
 // Save/restore scroll positions per page
@@ -154,12 +154,25 @@ function navigate(hash) {
     var projectId = hash.replace('#project/', '');
     var project = projects[projectId];
     if (project) {
-      // Hide old image immediately to prevent flash of stale content
-      detailImage.style.opacity = '0';
-      detailImage.src = project.image;
-      detailImage.alt = projectId.replace(/-/g, ' ');
       detailTitle.textContent = project.title;
       detailSubtitle.textContent = project.subtitle;
+
+      // Clear previous images
+      detailContent.innerHTML = '';
+
+      // Add all project images
+      project.images.forEach(function (src) {
+        var img = document.createElement('img');
+        img.src = src;
+        img.alt = projectId.replace(/-/g, ' ');
+        img.className = 'detail-image';
+        img.style.opacity = '0';
+        img.addEventListener('load', function () {
+          img.style.opacity = '1';
+        });
+        detailContent.appendChild(img);
+      });
+
       pageDetail.classList.add('active');
       navWork.classList.add('active');
       targetKey = 'detail';
@@ -189,11 +202,6 @@ function navigate(hash) {
     mainEl.scrollTop = 0;
   }
 }
-
-// Reveal image once loaded (prevents flash of old content)
-detailImage.addEventListener('load', function () {
-  detailImage.style.opacity = '1';
-});
 
 // Keyboard navigation on detail and sub-pages
 window.addEventListener('keydown', function (e) {

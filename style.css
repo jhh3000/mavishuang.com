@@ -245,7 +245,9 @@ body {
 
 .detail-content {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
   max-width: 900px;
   margin: 0 auto;
 }
