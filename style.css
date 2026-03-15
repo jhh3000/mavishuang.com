@@ -310,14 +310,24 @@ body {
     height: auto;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    gap: 16px;
+    justify-content: space-between;
     padding: 10px 16px;
     position: fixed;
     top: 0;
     left: 0;
     border-right: none;
     border-bottom: 1px solid var(--bg);
+  }
+
+  .sidebar-logo {
+    flex: 1;
+  }
+
+  /* Hide contact text but keep as spacer to center nav */
+  .sidebar-contact {
+    display: block !important;
+    visibility: hidden;
+    flex: 1;
   }
 
   .sidebar-logo {
