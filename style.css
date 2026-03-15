@@ -320,17 +320,6 @@ body {
   }
 
   .sidebar-logo {
-    flex: 1;
-  }
-
-  /* Hide contact text but keep as spacer to center nav */
-  .sidebar-contact {
-    display: block !important;
-    visibility: hidden;
-    flex: 1;
-  }
-
-  .sidebar-logo {
     margin-bottom: 0;
   }
 
@@ -347,6 +336,9 @@ body {
   }
 
   .nav-arrows {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     gap: 4px;
     margin-bottom: 0;
   }
@@ -365,7 +357,7 @@ body {
 
   /* Hide sidebar contact on mobile */
   .sidebar-contact {
-    display: none;
+    display: none !important;
   }
 
   /* Show mobile contact footer */
