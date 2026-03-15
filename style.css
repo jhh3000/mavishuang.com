@@ -310,7 +310,8 @@ body {
     height: auto;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 16px;
     padding: 10px 16px;
     position: fixed;
     top: 0;
@@ -395,8 +396,7 @@ body {
     justify-content: center;
     gap: 10px;
     padding: 10px 0 6px;
-    opacity: 0;
-    animation: swipeHintFade 2.5s ease forwards;
+    opacity: 1;
   }
 
   .swipe-hint-arrow {
