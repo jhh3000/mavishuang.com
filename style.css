@@ -339,7 +339,7 @@ body {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    gap: 4px;
+    gap: 12px;
     margin-bottom: 0;
   }
 
