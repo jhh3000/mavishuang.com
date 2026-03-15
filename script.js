@@ -214,18 +214,35 @@ window.addEventListener('keydown', function (e) {
     return;
   }
 
+  // On main work page, right arrow goes to first project
+  if (!hash || hash === '#work' || hash === '') {
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      window.location.hash = '#project/' + projectOrder[0];
+    }
+    return;
+  }
+
   if (!hash.startsWith('#project/')) return;
 
   var projectId = hash.replace('#project/', '');
   var idx = projectOrder.indexOf(projectId);
   if (idx === -1) return;
 
-  if (e.key === 'ArrowLeft' && idx > 0) {
+  if (e.key === 'ArrowLeft') {
     e.preventDefault();
-    window.location.hash = '#project/' + projectOrder[idx - 1];
-  } else if (e.key === 'ArrowRight' && idx < projectOrder.length - 1) {
+    if (idx === 0) {
+      window.location.hash = '#work';
+    } else {
+      window.location.hash = '#project/' + projectOrder[idx - 1];
+    }
+  } else if (e.key === 'ArrowRight') {
     e.preventDefault();
-    window.location.hash = '#project/' + projectOrder[idx + 1];
+    if (idx === projectOrder.length - 1) {
+      window.location.hash = '#work';
+    } else {
+      window.location.hash = '#project/' + projectOrder[idx + 1];
+    }
   }
 });
 
