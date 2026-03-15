@@ -322,15 +322,17 @@ body {
   }
 
   .sidebar-contact {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 4px;
   }
 
-  .contact-name {
-    font-size: 7px;
-    letter-spacing: 1px;
-  }
-
+  .contact-name,
   .contact-email {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    white-space: nowrap;
     font-size: 6px;
     letter-spacing: 0.5px;
   }
