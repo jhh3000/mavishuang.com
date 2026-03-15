@@ -200,6 +200,10 @@ body {
   object-fit: contain;
 }
 
+.grid-item-contain-white {
+  background: #ffffff;
+}
+
 /* ===== Resume Page ===== */
 .page-resume {
   padding: 40px;
