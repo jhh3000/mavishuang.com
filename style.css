@@ -252,6 +252,11 @@ body {
   margin: 0;
 }
 
+/* Swipe hint - hidden on desktop */
+.swipe-hint {
+  display: none;
+}
+
 .detail-content {
   display: flex;
   flex-direction: column;
@@ -345,6 +350,55 @@ body {
 
   .page-detail {
     padding: 12px;
+  }
+
+  .swipe-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 0 6px;
+    opacity: 0;
+    animation: swipeHintFade 2.5s ease forwards;
+  }
+
+  .swipe-hint-arrow {
+    font-size: 18px;
+    color: var(--gray-border);
+    animation: swipeHintSlide 1.2s ease-in-out 2;
+  }
+
+  .swipe-hint-arrow:first-child {
+    animation-name: swipeHintSlideLeft;
+  }
+
+  .swipe-hint-arrow:last-child {
+    animation-name: swipeHintSlideRight;
+  }
+
+  .swipe-hint-text {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gray-border);
+    font-weight: 600;
+  }
+
+  @keyframes swipeHintFade {
+    0% { opacity: 0; }
+    15% { opacity: 1; }
+    75% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  @keyframes swipeHintSlideLeft {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-5px); }
+  }
+
+  @keyframes swipeHintSlideRight {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
   }
 
   .detail-header {

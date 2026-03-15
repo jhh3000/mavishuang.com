@@ -175,6 +175,12 @@ function navigate(hash) {
         detailContent.appendChild(img);
       });
 
+      // Restart swipe hint animation
+      var hint = document.getElementById('swipe-hint');
+      hint.style.animation = 'none';
+      hint.offsetHeight; // trigger reflow
+      hint.style.animation = '';
+
       pageDetail.classList.add('active');
       navWork.classList.add('active');
       targetKey = 'detail';
