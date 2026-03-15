@@ -271,17 +271,23 @@ mainEl.addEventListener('touchend', function (e) {
   swiping = false;
 
   var hash = window.location.hash;
-  if (!hash.startsWith('#project/')) return;
 
   var dx = e.changedTouches[0].clientX - touchStartX;
   var dy = e.changedTouches[0].clientY - touchStartY;
 
   // Only trigger if horizontal swipe is dominant and long enough
   if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
-    if (dx > 0) {
-      navigatePrev();
-    } else {
-      navigateNext();
+    if (hash.startsWith('#project/')) {
+      if (dx > 0) {
+        navigatePrev();
+      } else {
+        navigateNext();
+      }
+    } else if (!hash || hash === '#work' || hash === '') {
+      // On work page, swipe left to go to first project
+      if (dx < 0) {
+        window.location.hash = '#project/' + projectOrder[0];
+      }
     }
   }
 }, { passive: true });
