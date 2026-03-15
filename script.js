@@ -1,7 +1,7 @@
 // Project metadata — maps project ID to images, title, and subtitle
 var projects = {
   'bar-rescue': {
-    images: ['project-images/bar-rescue-1.jpg', 'project-images/bar-rescue-2.jpg'],
+    images: ['project-images/bar-rescue-1.jpg', 'project-images/bar-rescue-2.jpg', 'project-images/bar-rescue-3.jpg', 'project-images/bar-rescue-4.jpg', 'project-images/bar-rescue-5.jpg'],
     title: 'PARAMOUNT NETWORK BAR RESCUE',
     subtitle: 'Digital Ad Design'
   },
