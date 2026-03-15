@@ -107,9 +107,17 @@ detailImage.addEventListener('load', function () {
   detailImage.style.opacity = '1';
 });
 
-// Keyboard navigation on detail pages
+// Keyboard navigation on detail and sub-pages
 window.addEventListener('keydown', function (e) {
   var hash = window.location.hash;
+
+  // Escape returns to the main work page from any sub-page
+  if (e.key === 'Escape' && hash && hash !== '#work' && hash !== '') {
+    e.preventDefault();
+    window.location.hash = '#work';
+    return;
+  }
+
   if (!hash.startsWith('#project/')) return;
 
   var projectId = hash.replace('#project/', '');
